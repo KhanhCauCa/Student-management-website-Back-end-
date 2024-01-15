@@ -1,0 +1,49 @@
+﻿@model QuanLySinhVien.Models.DTO.LopDTO
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <div class="container-fluid px-4">
+        <h1>Thêm</h1>
+
+        <h4>Lớp</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="MaLop" class="control-label"> Mã Lớp</label>
+                        <input asp-for="MaLop" class="form-control" />
+                        <span asp-validation-for="MaLop" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TenLop" class="control-label"> Tên lớp</label>
+                        <input asp-for="TenLop" class="form-control" />
+                        <span asp-validation-for="TenLop" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MaNghanh" class="control-label"> Nghành</label>
+                        <select asp-for="MaNghanh" class="form-select" asp-items="ViewBag.Nghanh"></select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary mt-2" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Quay lại</a>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

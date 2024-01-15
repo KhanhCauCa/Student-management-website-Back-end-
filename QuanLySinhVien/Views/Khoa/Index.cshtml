@@ -1,0 +1,90 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model IPagedList<QuanLySinhVien.Models.Entity.Khoa>
+@{
+    ViewData["Title"] = "Khoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<main>
+    <div class="container-fluid px-4 pt-2">
+        <h1 class="mt-4">Khoa</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a asp-action="Create" class="btn btn-success text-white p-2 ">
+                            <i class="fas fa-plus-square"></i>
+                            Thêm mới </a>
+                    </div>
+                    <div class="col-md-4 ms-auto">
+                        <form method="get" asp-action="Index" asp-controller="Khoa">
+                            <div class="input-group">
+
+                                @*<select class="form-select" id="status" name="status" style="margin-right:20px;">
+                                <option value="-1">Tất cả</option>
+                                <option value="1">Hoạt động</option>
+                                <option value="0">Không hoạt động</option>
+                                </select> *@
+                                <input class="form-control border-end-0 border rounded-pill " type="search" value="@ViewBag.SearchQuery" name="searchQuery" placeholder="nhập tên khoa hoặc mã khoa để tìm" id="example-search-input">
+                                <span class="input-group-append">
+                                    <button class="btn btn-outline-light bg-primary border-bottom-0 border rounded-pill ms-n5" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã khoa
+                            </th>
+                            <th>
+                                Tên khoa
+                            </th>
+                            <th>
+                                Năm thành lập
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaKhoa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenKhoa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NamThanhLap)
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.MaKhoa">Sửa</a> |
+                                    <a class="btn btn-danger" onclick="return deleteKhoa('@item.MaKhoa')">Xóa </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                @Html.PagedListPager(Model,page => Url.Action("Index", "Khoa", new { page = page, searchQuery = ViewBag.SearchQuery, status = ViewBag.Status }),
+                new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" }, PageClasses = new string[] { "page-link" } })
+            </div>
+        </div>
+    </div>
+</main>
+

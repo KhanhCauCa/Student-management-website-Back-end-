@@ -1,0 +1,54 @@
+﻿@model QuanLySinhVien.Models.DTO.MonHocDTO
+
+@{
+    ViewData["Title"] = "Thêm mới lớp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <div class="container-fluid px-4">
+        <h1>Thêm</h1>
+
+        <h4>Môn học</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="MaMh" class="control-label"> Mã môn học</label>
+                        <input asp-for="MaMh" class="form-control" />
+                        <span asp-validation-for="MaMh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TenMh" class="control-label"> Tên môn học</label>
+                        <input asp-for="TenMh" class="form-control" />
+                        <span asp-validation-for="TenMh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Ki" class="control-label"> KÌ</label>
+                        <input asp-for="Ki" class="form-control" />
+                        <span asp-validation-for="Ki" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SoTinChi" class="control-label">Số tín chỉ</label>
+                        <input asp-for="SoTinChi" class="form-control" />
+                        <span asp-validation-for="SoTinChi" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Thêm mới" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Quay lại</a>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

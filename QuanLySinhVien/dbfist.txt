@@ -1,0 +1,1 @@
+ Scaffold-DbContext "Data Source=DESKTOP-HKTU0QF\SQLEXPRESS;Initial Catalog=QuanLySinhVien;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/Entity -Force 

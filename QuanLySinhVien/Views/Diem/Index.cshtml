@@ -1,0 +1,118 @@
+﻿<style>
+    .has-error .select2-selection {
+        border-color: rgb(185, 74, 72) !important;
+    }
+</style>
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Điểm</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-success text-white p-2" data-bs-toggle="modal"  data-bs-target="#modalAddDiem">
+                            <i class="fas fa-plus-square"></i>
+                            Nhập Điểm
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body">
+
+                <table class="table table-hover" id="tblDiem">
+                    <thead>
+                        <tr>
+                            <th scope="col">Mã sinh viên</th>
+                            <th scope="col">Tên sinh viên</th>
+                            <th scope="col">Môn học</th>
+                            <th scope="col">Điểm thi</th>
+                            <th scope="col">Chức năng</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+<!-- Modal -->
+<div class="modal fade " id="modalAddDiem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="titleDiem">Nhập điểm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+
+                <div id="messAddDiem" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label"> Chọn sinh viên</label>
+
+                </div>
+                <select class="data_sinhvien" asp-items="ViewBag.SinhVien">
+                </select>
+                <div class="form-group">
+                    <label class="control-label">Chọn môn học</label>
+
+                </div>
+                <select class="data_monhoc" asp-items="ViewBag.MonHoc"></select>
+                <div class="form-group">
+                    <label class="control-label">Điểm</label>
+                    <input id="data_diem" style="width: 90px" type="number" min="1" max="10" class="form-control" />
+                </div>
+                <div class="form-group mt-4">
+                    <button id="btnAddDiem" onclick=" return addDiem()" class="btn btn-primary">Nhập</button>
+                  
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade " id="modalUpdateDiem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="titleDiem">Sửa điểm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="madiem_update" />
+                <div id="messUpdateDiem" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label"> Sinh viên</label>
+                    <input type="text" class="form-control" id="sinhvien_value" disabled />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Môn học</label>
+                    <input type="text" class="form-control" id="monhoc_value" disabled />
+                </div>
+              
+                <div class="form-group">
+                    <label class="control-label">Điểm</label>
+                    <input id="diem_update" style="width: 90px" type="number" min="1" max="10" class="form-control" />
+                </div>
+                <div class="form-group mt-4">
+                    <button id="btnUpdateDiem" onclick=" return UpdateDiem()" class="btn btn-warning">Sửa</button>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

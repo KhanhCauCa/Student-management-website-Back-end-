@@ -1,0 +1,50 @@
+﻿@model QuanLySinhVien.Models.DTO.NghanhDTO
+
+@{
+    ViewData["Title"] = "Sửa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <div class="container-fluid px-4 pt-2">
+        <h1>Sửa</h1>
+
+        <h4>Nghành</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="MaNghanh" />
+                    <div class="form-group">
+                        <label class="control-label">Mã nghành</label>
+                        <input class="form-control" type="text" value="@Model.MaNghanh" disabled />
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TenNghanh" class="control-label">Tên nghành</label>
+                        <input asp-for="TenNghanh" class="form-control" />
+                        <span asp-validation-for="TenNghanh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MaKhoa" class="control-label">Tên Khoa</label>
+                        <select asp-for="MaKhoa" class="form-select" asp-items="ViewBag.Khoa"></select>
+                        <span asp-validation-for="MaKhoa" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-2">
+                        <input type="submit" value="Lưu" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Quay lại</a>
+        </div>
+    </div>
+</main>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

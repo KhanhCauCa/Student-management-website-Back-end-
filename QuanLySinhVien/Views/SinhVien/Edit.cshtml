@@ -1,0 +1,80 @@
+﻿@model QuanLySinhVien.Models.DTO.SinhVienDTO
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h4>Sửa sinh viên</h4>
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                       
+                        <label for="file">Chọn ảnh:</label>
+                        <input type="file" class="form-control-file" id="file" name="image" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <img id="previewImage" src="~/img/anhsv/@Model.AnhSv" alt="Preview" style="max-width: 200px; max-height: 200px; " />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Mã sinh viên</label>
+                        <input  value="@Model.MaSv" disabled class="form-control" />
+                        <input type="hidden" asp-for="MaSv"  class="form-control" />
+                        <input type="hidden" asp-for="AnhSv" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TenSv" class="control-label">Tên sinh viên</label>
+                        <input asp-for="TenSv" class="form-control" />
+                        <span asp-validation-for="TenSv" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cccd" class="control-label">CCCD</label>
+                        <input type="number" asp-for="Cccd" class="form-control" />
+                        <span asp-validation-for="Cccd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <input type="email" asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DiaChi" class="control-label">Địa chỉ</label>
+                        <input asp-for="DiaChi" class="form-control" />
+                        <span asp-validation-for="DiaChi" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NgaySinh" class="control-label">Ngày sinh</label>
+                        <input type="date" asp-for="NgaySinh" class="form-control" />
+                        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Sdt" class="control-label">Số điện thoại</label>
+                        <input type="number" asp-for="Sdt" class="form-control" />
+                        <span asp-validation-for="Sdt" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MaLop" class="control-label"> Lớp</label>
+                        <select asp-for="MaLop" class="form-control" asp-items="ViewBag.Lop"></select>
+                    </div>
+                    <div class="form-group mt-4">
+                        <input type="submit" value="Sửa" class="btn btn-warning" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Quay Lại</a>
+        </div>
+    </div>
+</main>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
